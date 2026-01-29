@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "DB_1",
+            "database": "capapp_1/db.sqlite"
+        }
+    ]
+}
