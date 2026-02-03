@@ -1,10 +1,16 @@
 using {shashank.db} from '../db/datamodel';
 
-service catalogService @(path: 'catalogService') {
-
+service CatalogService @(path:'CatalogService',
+    //authentication
+    requires: 'authenticated-user') {
     //All the CURDQ - Create, Update, Read, Delete and Query operation on odata
-    @readonly
-    entity EmployeeSrv        as projection on db.master.employees;
+    //@readonly
+    entity EmployeeSrv
+    //authorization
+    @(restrict: [
+        {grant: ['READ'], to: 'Viewer', where: 'bankName = $user.BankName'},
+        {grant: ['WRITE'], to: 'Admin'}
+         ])     as projection on db.master.employees;
 
     //Other entities
     entity BusinessPartnerSet as projection on db.master.businesspartner;
