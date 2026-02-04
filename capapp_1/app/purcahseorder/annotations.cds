@@ -1,4 +1,4 @@
-using catalogService as service from '../../srv/catalogService';
+using CatalogService as service from '../../srv/catalogService';
 
 
 //Annotate our entity on which we created fiori app
