@@ -1,13 +1,13 @@
 {
-  "welcomeFile": "purchaseorder/webapp/",
+  "welcomeFile": "purcahseorder/webapp/",
   "authenticationMethod": "route",
   "sessionTimeout": 100,
   "pluginMetadataEndpoint": "/metadata",
   "routes": [
     {
-      "source": "^/purchaseorder/webapp/(.*)",
+      "source": "^/purcahseorder/webapp/(.*)",
       "target": "$1",
-      "localDir": "purchaseorder/webapp/",
+      "localDir": "purcahseorder/webapp/",
       "authenticationType": "xsuaa"
     },
     {
