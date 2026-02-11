@@ -1,0 +1,32 @@
+{
+  "generationParameters": {
+    "generationDate": "Tue Feb 10 2026 05:01:56 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP On-Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "https://s4hana10.saraswatitechnologies.in:44310/sap/opu/odata/sap/SEPMRA_PROD_MAN",
+    "appName": "manageproducts",
+    "appTitle": "Manage Products",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "sony.shashank",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.144.1",
+    "enableEslint": false,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.20.2",
+    "template": "List Report Page V2",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "SEPMRA_C_PD_Product"
+      },
+      {
+        "type": "Navigation Entity",
+        "value": "to_ProductSalesData"
+      }
+    ],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}
