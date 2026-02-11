@@ -7,9 +7,10 @@
     "@sap-cloud-sdk/connectivity": "^4",
     "@sap-cloud-sdk/http-client": "^4",
     "@sap-cloud-sdk/resilience": "^4",
+    "@sap/approuter": "^20.9.0",
     "@sap/cds": "^9",
-    "express": "^4",
-    "@sap/xssec": "^4"
+    "@sap/xssec": "^4",
+    "express": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2",

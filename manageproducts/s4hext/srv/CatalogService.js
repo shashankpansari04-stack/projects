@@ -43,7 +43,7 @@ module.exports = class CatalogService extends cds.ApplicationService { init() {
 
    
     var getAllSalesOrders = async function(){
-        const { opApiSalesOrderSrv0001 } = require('./src/generated/OP_API_SALES_ORDER_SRV_0001');
+        const { opApiSalesOrderSrv0001 } = require('./src/gene/OP_API_SALES_ORDER_SRV_0001');
         const { salesOrderApi } = opApiSalesOrderSrv0001();
         const dataSalesData = await salesOrderApi.requestBuilder().getAll().top(15)
         .select(
@@ -55,10 +55,7 @@ module.exports = class CatalogService extends cds.ApplicationService { init() {
             salesOrderApi.schema.TO_ITEM
         )
         .execute({
-            destinationName: "S4HANA"
-            //  "url": "http://122.162.240.164:8010",
-            //  "username": "",
-            //  "password": ""
+           destinationName: "S4HANA" 
         });
         return dataSalesData;
     };

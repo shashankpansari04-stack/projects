@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emirates Sales Orders</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #000000, #1c1c1c);
+            color: #fff;
+        }
+
+
+        header {
+            background: #d71920;
+            padding: 20px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+
+        .container {
+            padding: 30px;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+
+        th {
+            background: #d71920;
+            color: white;
+            padding: 12px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+
+        .btn-container {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+
+        button {
+            background: #d4af37;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+        button:hover {
+            background: #b8962e;
+        }
+
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 10px;
+            background: #000;
+            color: #aaa;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+
+<header>
+    Emirates Sales Order Dashboard
+</header>
+
+
+<div class="container">
+    <div id="tableSection">
+        <table id="salesTable">
+            <thead>
+                <tr>
+                    <th>Sales Order</th>
+                    <th>Sales Org</th>
+                    <th>Order Type</th>
+                    <th>Customer</th>
+                    <th>Material</th>
+                    <th>Quantity</th>
+                    <th>Net Amount</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+    <div class="btn-container">
+        <button onclick="downloadPDF()">Download as PDF</button>
+    </div>
+</div>
+
+
+<footer>
+    © 2026 Emirates Business Reporting
+</footer>
+
+
+<script>
+    async function fetchData() {
+        try {
+            const response = await fetch('/odata/v4/CatalogService/MySalesOrder');
+            const data = await response.json();
+
+
+            const tableBody = document.querySelector('#salesTable tbody');
+            tableBody.innerHTML = "";
+
+
+            data.value.forEach(order => {
+                const row = `
+                    <tr>
+                        <td>${order.SalesOrder}</td>
+                        <td>${order.SalesOrganization}</td>
+                        <td>${order.SalesOrderType}</td>
+                        <td>${order.SoldToParty}</td>
+                        <td>${order.Material}</td>
+                        <td>${order.RequestedQuantity}</td>
+                        <td>AED ${order.NetAmount}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+
+
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+
+
+    async function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const element = document.getElementById("tableSection");
+
+
+        html2canvas(element).then(canvas => {
+            const imgData = canvas.toDataURL("image/png");
+            const pdf = new jsPDF('l', 'mm', 'a4');
+            const imgWidth = 280;
+            const imgHeight = canvas.height * imgWidth / canvas.width;
+
+
+            pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+            pdf.save("Emirates_Sales_Orders.pdf");
+        });
+    }
+
+
+    fetchData();
+</script>
+
+
+</body>
+</html>
