@@ -7,7 +7,7 @@
     {
       "source": "^/index.html",
       "target": "$1",
-      "localDir": "index.html",
+      "localDir": "/",
       "authenticationType": "xsuaa"
     },
     {
